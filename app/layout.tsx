@@ -21,6 +21,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={cn("h-full", "antialiased", inter.variable)}>
+      <head>
+        <link rel="image/svg" href="/icon.svg" sizes="32x32" />
+      </head>
       <body className="min-h-full flex flex-col">
         <main className="flex flex-col flex-1">{children}</main>
       </body>
