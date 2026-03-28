@@ -1,7 +1,11 @@
+import "./globals.css";
+
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import "./globals.css";
-import { cn } from "@/utils/cn";
+
+import { cn } from "@/utils";
+
+import { Header } from "@/components/shared";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -25,6 +29,7 @@ export default function RootLayout({
         <link rel="image/svg" href="/icon.svg" sizes="32x32" />
       </head>
       <body className="min-h-full flex flex-col">
+        <Header />
         <main className="flex flex-col flex-1">{children}</main>
       </body>
     </html>
