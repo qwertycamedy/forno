@@ -1,5 +1,13 @@
 "use client";
 
+import { useState } from "react";
+
+import { cn } from "@/utils";
+
+import Image from "next/image";
+import Link from "next/link";
+import { ArrowLeft, ArrowRight, ShoppingCart } from "lucide-react";
+
 import {
   Button,
   Container,
@@ -12,17 +20,17 @@ import {
   SheetTrigger,
   Title,
 } from "@/components/ui";
-import { cn } from "@/utils";
-import { ArrowLeft, ArrowRight, ShoppingCart } from "lucide-react";
-import Image from "next/image";
-import Link from "next/link";
-import { useState } from "react";
+import { ClassNameValue } from "tailwind-merge";
 
 type TItem = {
   id: number;
 };
 
-export const HeaderCartSheet = () => {
+export const HeaderCartSheet = ({
+  triggerBtnCl,
+}: {
+  triggerBtnCl?: ClassNameValue;
+}) => {
   const loading = false;
   const [redirecting, setRedirecting] = useState(false);
   const items: TItem[] = [
@@ -39,7 +47,7 @@ export const HeaderCartSheet = () => {
       <SheetTrigger asChild>
         <Button
           loading={loading}
-          className={cn("group relative", { "w-26.25": loading })}
+          className={cn("group relative", triggerBtnCl, { "w-26.25": loading })}
         >
           <b>{totalAmount} ₽</b>
           <span className="h-full w-px bg-white/30 mx-3" />

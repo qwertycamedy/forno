@@ -7,7 +7,8 @@ export * from "./input";
 export * from "./popover";
 export * from "./select";
 export * from "./slider";
+export * from "./range-slider";
 export * from "./skeleton";
-export * from './container';
-export * from './sheet';
-export * from './title'
+export * from "./container";
+export * from "./sheet";
+export * from "./title";
