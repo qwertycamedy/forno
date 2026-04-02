@@ -1,6 +1,7 @@
 import { TCategory, TProduct } from "@/types";
 import { Filters, ProductsGroupList, TopBar } from "@/components/shared";
 import { Container, Title } from "@/components/ui";
+import { Suspense } from "react";
 
 export default function Home() {
   const categories: TCategory[] = [
@@ -19,19 +20,22 @@ export default function Home() {
       name: "Сырный цыпленок",
       imageUrl:
         "https://media.dodostatic.net/image/r:584x584/01995c4fb83e704284f5dcbbf3890686.avif",
-    }, {
+    },
+    {
       id: 1,
       price: 500,
       name: "Сырный цыпленок",
       imageUrl:
         "https://media.dodostatic.net/image/r:584x584/01995c4fb83e704284f5dcbbf3890686.avif",
-    }, {
+    },
+    {
       id: 2,
       price: 500,
       name: "Сырный цыпленок",
       imageUrl:
         "https://media.dodostatic.net/image/r:584x584/01995c4fb83e704284f5dcbbf3890686.avif",
-    }, {
+    },
+    {
       id: 3,
       price: 500,
       name: "Сырный цыпленок",
@@ -49,7 +53,9 @@ export default function Home() {
 
       <Container className="pb-14 mt-10 flex gap-15">
         <div className="w-62.5">
-          <Filters />
+          <Suspense fallback={<div>Loading filters...</div>}>
+            <Filters />
+          </Suspense>
         </div>
         <div className="flex-1">
           <div className="flex flex-col">

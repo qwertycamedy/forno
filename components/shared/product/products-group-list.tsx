@@ -22,10 +22,13 @@ export const ProductsGroupList = ({
   categoryId: number;
 }) => {
   const setActiveId = useCategory((state) => state.setActiveId);
-  const intersectionRef = useRef(null);
-  const intersection = useIntersection(intersectionRef, {
-    threshold: 0.4,
-  });
+  const intersectionRef = useRef<HTMLDivElement>(null);
+  const intersection = useIntersection(
+    intersectionRef as React.RefObject<HTMLElement>,
+    {
+      threshold: 0.4,
+    },
+  );
 
   useEffect(() => {
     if (intersection?.isIntersecting) {
