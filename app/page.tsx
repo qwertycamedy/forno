@@ -2,50 +2,56 @@ import { TCategory, TProduct } from "@/types";
 import { Filters, ProductsGroupList, TopBar } from "@/components/shared";
 import { Container, Title } from "@/components/ui";
 import { Suspense } from "react";
+import { prisma } from "@/prisma";
 
-export default function Home() {
-  const categories: TCategory[] = [
-    { id: 1, name: "Пиццы" },
-    { id: 2, name: "Бургеры" },
-    { id: 3, name: "Напитки" },
-    { id: 4, name: "Десерты" },
-    { id: 5, name: "Детям" },
-    { id: 6, name: "Снэки" },
-    { id: 7, name: "Другое" },
-  ];
-  const products: TProduct[] = [
-    {
-      id: 0,
-      price: 500,
-      name: "Сырный цыпленок",
-      imageUrl:
-        "https://media.dodostatic.net/image/r:584x584/01995c4fb83e704284f5dcbbf3890686.avif",
-    },
-    {
-      id: 1,
-      price: 500,
-      name: "Сырный цыпленок",
-      imageUrl:
-        "https://media.dodostatic.net/image/r:584x584/01995c4fb83e704284f5dcbbf3890686.avif",
-    },
-    {
-      id: 2,
-      price: 500,
-      name: "Сырный цыпленок",
-      imageUrl:
-        "https://media.dodostatic.net/image/r:584x584/01995c4fb83e704284f5dcbbf3890686.avif",
-    },
-    {
-      id: 3,
-      price: 500,
-      name: "Сырный цыпленок",
-      imageUrl:
-        "https://media.dodostatic.net/image/r:584x584/01995c4fb83e704284f5dcbbf3890686.avif",
-    },
-  ];
+const categories: TCategory[] = [
+  { id: 1, name: "Пиццы" },
+  { id: 2, name: "Бургеры" },
+  { id: 3, name: "Напитки" },
+  { id: 4, name: "Десерты" },
+  { id: 5, name: "Детям" },
+  { id: 6, name: "Снэки" },
+  { id: 7, name: "Другое" },
+];
+const products: TProduct[] = [
+  {
+    id: 0,
+    price: 500,
+    name: "Сырный цыпленок",
+    imageUrl:
+      "https://media.dodostatic.net/image/r:584x584/01995c4fb83e704284f5dcbbf3890686.avif",
+  },
+  {
+    id: 1,
+    price: 500,
+    name: "Сырный цыпленок",
+    imageUrl:
+      "https://media.dodostatic.net/image/r:584x584/01995c4fb83e704284f5dcbbf3890686.avif",
+  },
+  {
+    id: 2,
+    price: 500,
+    name: "Сырный цыпленок",
+    imageUrl:
+      "https://media.dodostatic.net/image/r:584x584/01995c4fb83e704284f5dcbbf3890686.avif",
+  },
+  {
+    id: 3,
+    price: 500,
+    name: "Сырный цыпленок",
+    imageUrl:
+      "https://media.dodostatic.net/image/r:584x584/01995c4fb83e704284f5dcbbf3890686.avif",
+  },
+];
+
+export default async function Home() {
+  const users = await prisma.user.findMany();
 
   return (
     <div className="flex flex-col flex-1">
+      {users.map((user) => (
+        <div key={user.id}>{user.fullName}</div>
+      ))}
       <Container className={"mt-5"}>
         <Title size="xl" text="Все пиццы" className="font-medium" />
       </Container>
