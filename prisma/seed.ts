@@ -2,6 +2,8 @@ import { PrismaClient } from "../app/generated/prisma/client";
 import { PrismaPg } from "@prisma/adapter-pg";
 import "dotenv/config";
 import {
+  cartItems,
+  carts,
   categories,
   ingredients,
   pizza1,
@@ -96,6 +98,17 @@ async function up() {
       generateProductVariant({ productId: 16 }),
       generateProductVariant({ productId: 17 }),
     ],
+  });
+
+  await prisma.cart.createMany({
+    data: carts,
+  });
+
+  await prisma.cartItem.create({
+    data: cartItems[0],
+  });
+  await prisma.cartItem.create({
+    data: cartItems[1],
   });
 }
 

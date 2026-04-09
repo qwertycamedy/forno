@@ -3,7 +3,7 @@ import { hashSync } from "bcrypt";
 
 export const users = [
   {
-    fullName: "User",
+    fullName: "User Test 23",
     email: "user@test.ru",
     password: hashSync("111111", 10),
     verified: new Date(),

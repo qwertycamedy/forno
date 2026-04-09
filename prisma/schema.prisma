@@ -49,7 +49,7 @@ model Product {
 
   productVariants ProductVariant[]
 
-  ingredient Ingredient[]
+  ingredients Ingredient[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -75,6 +75,7 @@ model Ingredient {
   id Int @id @default(autoincrement())
 
   name     String @unique
+  price    Int
   imageUrl String
 
   cartItems CartItem[]
