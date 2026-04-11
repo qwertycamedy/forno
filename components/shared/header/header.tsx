@@ -3,7 +3,11 @@ import Image from "next/image";
 import Link from "next/link";
 import { ClassNameValue } from "tailwind-merge";
 import { Container } from "@/components/ui";
-import { HeaderCartSheet, HeaderAuthBtn } from "@/components/shared";
+import {
+  HeaderCartSheet,
+  HeaderAuthBtn,
+  HeaderSearch,
+} from "@/components/shared";
 
 type TProps = {
   className?: ClassNameValue;
@@ -34,6 +38,10 @@ export const Header = ({ className }: TProps) => {
             </div>
           </div>
         </Link>
+
+          <div className="mx-10 flex-1">
+            <HeaderSearch />
+          </div>
 
         <div className={"flex items-center gap-3"}>
           <HeaderAuthBtn />
