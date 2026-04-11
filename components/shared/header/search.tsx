@@ -27,8 +27,12 @@ export const HeaderSearch = () => {
   useDebounce(
     async () => {
       if (value.length) {
-        const products = await Api.products.search({ value });
-        setProducts(products);
+        try {
+          const products = await Api.products.search({ value });
+          setProducts(products);
+        } catch (e) {
+          console.error("GET SEARCH PRODUCTS ERROR: ", e);
+        }
       } else {
         setProducts([]);
       }

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useMap, useSet } from "react-use";
 import debounce from "lodash.debounce";
@@ -8,36 +8,20 @@ import qs from "qs";
 
 import { cn } from "@/utils";
 
-import { TIngredient } from "@/types";
 import { ClassNameValue } from "tailwind-merge";
 
 import { Input, Title, RangeSlider } from "@/components/ui";
 import { CheckboxFiltersGroup } from "@/components/shared";
+import { useFilterIngredients } from "@/hooks";
 
 export const Filters = ({ className }: { className?: ClassNameValue }) => {
   const searchParams = useSearchParams();
   const router = useRouter();
   const [filters, { set }] = useMap(Object.fromEntries(searchParams.entries()));
-  const [ingredients, setIngredients] = useState<TIngredient[]>([]);
+  const ingredients = useFilterIngredients();
   const [selectedIngredientsIds, { toggle }] = useSet(new Set<string>());
   const [pizzaTypes, { toggle: togglePizzaTypes }] = useSet(new Set<string>());
   const [sizes, { toggle: toggleSizes }] = useSet(new Set<string>());
-
-  useEffect(() => {
-    async function fetchIngredients() {
-      setIngredients([
-        { id: 1, name: "Пиццы" },
-        { id: 2, name: "Бургеры" },
-        { id: 3, name: "Напитки" },
-        { id: 4, name: "Десерты" },
-        { id: 5, name: "Детям" },
-        { id: 6, name: "Снэки" },
-        { id: 7, name: "Другое" },
-      ]);
-    }
-
-    fetchIngredients();
-  }, []);
 
   const updateQueryParams = useMemo(
     () =>
